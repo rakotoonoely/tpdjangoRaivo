@@ -1,0 +1,27 @@
+{% extends "master.html" %} {% block content %} {% load widget_tweaks %}
+<div><h1>Page Personnes</h1></div>
+<form action="/personnes/" method="POST">
+  {% csrf_token %}
+  <input hidden name="id_Utilisateur" type="text" value= "{{ idUtilisateur }}">
+  <fieldset>
+    {% for field in form %}
+    <div class="form-floating">
+      {% render_field field class="form-control" %}
+      <label for="{{field.auto_id}}">{{field.label}}</label>
+    </div>
+    {% endfor %}
+    <input type="submit" value="Soumettre" class="btn btn-primary" />
+  </fieldset>
+</form>
+
+<h1>Liste des personnes :</h1>
+{% for p in personnes %}
+<div>
+  <p>nom et prénom : {{p.nom}} {{p.prenom}}</p>
+  <p>age : {{p.age}} genre : {{p.genre}}</p>
+  <a href="modifier/{{p.id}}">modifier</a>
+  <a href="supprimer/{{p.id}}">supprimer</a>
+
+
+</div>
+{% endfor %} {% endblock content %}

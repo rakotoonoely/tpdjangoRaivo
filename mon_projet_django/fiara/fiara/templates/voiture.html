@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% load static %} {% load widget_tweaks %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Inscription</title>
+    <link rel="stylesheet" href="{% static 'styl.css' %}" type="text/css" />
+  </head>
+  <body style="height=100%">
+    <div><h1>Page Voitures</h1></div>
+    <form action="/voitures/" method="POST">
+      {% csrf_token %} {% for field in form %} {{field.label}} {% render_field
+      field class="form-control" %} {% endfor %}
+      <input type="submit" value="Soumettre" class="btn btn-primary" />
+    </form>
+  </body>
+</html>

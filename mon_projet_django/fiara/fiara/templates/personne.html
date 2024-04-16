@@ -1,0 +1,35 @@
+{% extends "master.html" %}{% load static %} {% block content %}
+<h2>Personne</h2>
+<form action="/personnes/ajout/" method="post">
+  <!-- Champ Nom -->
+  <label for="nom">Nom :</label><br />
+  <input type="text" id="nom" name="nom" required /><br /><br />
+
+  <!-- Champ Prénom -->
+  <label for="prenom">Prénom :</label><br />
+  <input type="text" id="prenom" name="prenom" required /><br /><br />
+
+  <!-- Champ Âge -->
+  <label for="age">Âge :</label><br />
+  <input type="number" id="age" name="age" required /><br /><br />
+
+  <!-- Champ Genre -->
+  <label for="genre">Genre :</label><br />
+  <select id="genre" name="genre" required>
+    <option value="">Choisir...</option>
+    <option value="homme">Homme</option>
+    <option value="femme">Femme</option></select
+  ><br /><br />
+
+  <!-- Bouton de soumission -->
+  <input type="submit" value="S'inscrire" />
+</form>
+
+<h1>Liste des personnes :</h1>
+{% for p in person %}
+<div>
+  <p>nom et prénom : {{p.nom}} {{p.prenom}}</p>
+  <p>age : {{p.age}} genre : {{p.genre}}</p>
+  <a href="/personne/supprimer/{{p.id}}">supprimer</a>
+</div>
+{% endfor %} {% endblock content%}
